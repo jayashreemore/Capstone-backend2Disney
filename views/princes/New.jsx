@@ -13,6 +13,7 @@ class NewPrince extends React.Component {
                     Age: <input type="number" name="age" /><br />
                     Outfit Color: <input type="text" name="outfitColor" /><br />
                     Best Friend: <input type="text" name="bestFriend" /><br />
+                    Is Ready to Watch: <input type="checkbox" name="readyToWatch" /> <br/>
                     <input type="submit" value="Create Prince" />
                 </form>
             </DefaultLayout>
@@ -20,4 +21,4 @@ class NewPrince extends React.Component {
     }
 }
 
-module.exports = NewPrince;
+module.exports = New;

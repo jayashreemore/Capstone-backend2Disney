@@ -1,9 +1,15 @@
 import express from 'express';
-
 const router = express.Router();
 
-// Sample data for Disney Princesses
-const princesses = [
+import Princess from '../models/princess.mjs';
+import db from '../db/conn.mjs';
+
+///////////////////seed route
+
+router.get('/seed', async (req, res) => {
+    console.log('in seed');
+    try{
+        await Princess.create([
     {
         id: 1,
         name: 'Cinderella',
@@ -66,22 +72,113 @@ const princesses = [
         bestFriend: 'Princess Hildegard'
     },
     // Add more princess data as needed
-];
+])
 
-// Route to get all Disney Princesses
-router.get('/', (req, res) => {
-    res.json(princesses);
+res.status(200).redirect('/princess');
+} catch (err) {
+res.status(400).send(err);
+}
 });
 
-// Route to get details of a specific Disney Princess by ID
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
-    const princess = princesses.find(p => p.id === parseInt(id));
-    if (princess) {
-        res.json(princess);
-    } else {
-        res.status(404).json({ message: 'Princess not found' });
-    }
+
+
+
+// Route to get all Disney Princes
+//I -Index-GET-READ-display a list of elements
+
+router.get('/', async (req, res) =>{
+    console.log("get")
+try{
+const foundPrincesses = await Princess.find({});
+res.status(200).send(foundPrincesses);
+} catch (err) {
+res.status(400).send(err);
+}
+})
+
+//N - NEW -GET -allows user to input a new item in the list
+
+router.get('/new', (req, res) => {
+res.sender('princesses/New');
+})
+
+// D- DELETE -it ll delete item permanantly
+
+router.delete('/:id', async(req, res) => {
+try{
+const deletedPrincess = await Prince.findByIdAndDelete(req.params.id);
+console.log(deletedPrincess);
+res.status(200).redirect('/princesesses');
+}  catch (err) {
+res.status(400).send(err);
+}
+})
+
+///U-UPDATE -updates list-PUT
+
+router.put('/:id', async (req, res) => {
+if (req.body.readyToWatch === 'on') {
+req.body.readyToWatch = true;
+}   else {
+req.body.readyToWatch = false;
+}  
+try {
+    const updatedPrincess = await Princess.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new: true},
+    );
+        console.log(updatedPrincess);
+    res.redirect(`/princesses/${req.params.id}`);
+}   catch(err) {
+    res.status(400).send(err);
+}
+})
+
+//////C - CREATE - to create new -POST
+//starting with post route to see things in database
+
+router.post('/', async(req, res) => {
+// useful for user input form 
+if (req.body.readyToWatch === 'on') {
+req.body.readyToWatch = true;
+} else {
+req.body.readyToWatch = false;
+}
+console.log(req.body)
+
+try{
+const createdPrincess = await Princess.create(req.body);
+} catch (err) {
+    res.status(400).send(err);
+}
+})
+
+////E- EDIT -GET-update an existing entry in the database
+
+router.get("/:id/edit", async (req, res) => {
+try {
+const foundPrincess = await Princess.findById (req.params.id);
+res.status(200).render('princesses/Edit', {princess: foundPrincess});
+}  catch (err) {
+res.status(400).send(err);
+}
+})
+
+//////S-SHOW - GET-show route displays details of an individual Prince
+
+// Route to get details of a specific Disney Prince by ID
+router.get('/:id', async (req, res) => {
+try {
+const foundPrincess = await Princess.findById(req.params.id);
+res.render('princesses/Show', { princess: foundPrincess});
+} catch (err) {
+res.status(400).send(err);
+}
+
 });
 
 export default router;
+
+
+

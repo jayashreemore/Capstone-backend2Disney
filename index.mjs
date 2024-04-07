@@ -40,7 +40,8 @@ app.use("/princes", princeRoutes);
 // Root route
 app.get('/', (req, res) => {
     res.send(
-        `<div> 'Welcome to the Disney Princess and Prince project!'<br><br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div>`
+        `<div> 'Welcome to my daughters Favorite Disney Movie's Characters -Princess and Prince project!'<br>
+        <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div>`
         );
 });
 

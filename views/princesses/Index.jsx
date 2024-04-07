@@ -1,4 +1,4 @@
-// views/princess/index.cjsx
+// views/princess/index.jsx
 
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
@@ -14,17 +14,21 @@ class IndexPrincess extends React.Component {
                 </nav>
                 <ul>
                     {princesses.map((princess, i) => (
-                        <li key={i}>
-                            <a href={`/princesses/${princess._id}`}>
-                                {princess.name}
-                            </a>
-                            , from {princess.movie}, is {princess.age} years old, wears {princess.dressColor} dress, and her best friend is {princess.bestFriend}.
-                            <br />
-                            <a href={`/princesses/${princess._id}/edit`}>Edit This Princess</a>
-                            <form action={`/princesses/${princess._id}?_method=DELETE`} method="POST">
-                                <input type="submit" value="DELETE"/>
-                            </form>
-                        </li>
+                        <li> 
+                        The {' '}
+                        <a href={`/princesses/${princess._id}`}>
+                            {princess.name}
+                        </a> {' '}
+                        is {princess.movie} <br></br>
+                        {princess.readyToWatch
+                        ? `It is ready to watch`
+                    : `It is not ready to watch`}
+                    <br/>
+                    <a href={`/princess/${prince._id} /edit`}>Edit This Princess</a>
+                    <form action={`/princesses/${prince._id}?_method=DELETE`} method="POST">
+                        <input type="submit"  value="DELETE"/>
+                    </form>   
+                         </li>
                     ))}
                 </ul>
             </DefaultLayout>
@@ -32,4 +36,4 @@ class IndexPrincess extends React.Component {
     }
 }
 
-module.exports = IndexPrincess;
+module.exports = Index;

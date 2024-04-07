@@ -3,33 +3,42 @@
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
 
-class IndexPrince extends React.Component {
+class Indexprinces extends React.Component {
     render() {
         const { princes } = this.props;
+        //const princes = this.props.princes;
 
         return (
-            <DefaultLayout title="Prince Index Page">
+            <DefaultLayout title="Princes Index Page">
                 <nav>
                     <a href="/princes/new">Create a New Prince</a>
                 </nav>
                 <ul>
-                    {princes.map((prince, i) => (
-                        <li key={i}>
-                            <a href={`/princes/${prince._id}`}>
-                                {prince.name}
-                            </a>
-                            , from {prince.movie}, is {prince.age} years old, wears {prince.outfitColor} outfit, and his best friend is {prince.bestFriend}.
-                            <br />
-                            <a href={`/princes/${prince._id}/edit`}>Edit This Prince</a>
+                    {princes.map((prince, i) => {
+                        return ( 
+                            <li> 
+                                The {' '}
+                                <a href={`/princes/${prince._id}`}>
+                                    {prince.name}
+                                </a> {' '}
+                                is {prince.movie} <br></br>
+                                {prince.readyToWatch
+                                ? `It is ready to watch`
+                            : `It is not ready to watch`}
+                            <br/>
+                            <a href={`/prince/${prince._id} /edit`}>Edit This Prince</a>
                             <form action={`/princes/${prince._id}?_method=DELETE`} method="POST">
-                                <input type="submit" value="DELETE"/>
-                            </form>
-                        </li>
-                    ))}
+                                <input type="submit"  value="DELETE"/>
+                                       </form>   
+                                 </li>
+                        )
+                    })
+
+                }
                 </ul>
-            </DefaultLayout>
-        );
+                </DefaultLayout>
+        )
     }
 }
 
-module.exports = IndexPrince;
+module.exports = Index;
