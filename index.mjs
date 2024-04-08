@@ -6,6 +6,7 @@ import jsxViewEngine from 'jsx-view-engine';
 import methodOverride from 'method-override';
 import db from './db/conn.mjs';
 
+
 // Import routes
 import princessRoutes from './controllers/princess.mjs';
 import princeRoutes from './controllers/prince.mjs';
@@ -28,22 +29,29 @@ app.use(methodOverride('_method'));
 
 
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// // Connect to MongoDB
+// mongoose.connect(process.env.MONGO_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
 
 app.use("/movies", movieRoutes);
 app.use("/princesses", princessRoutes);
 app.use("/princes", princeRoutes);
 app.use("/users", userRoutes);
 
-// Root route
+// Root route for all -princes, princesses, movies, users all together 
 app.get('/', (req, res) => {
     res.send(
-        `<div> 'Welcome to my daughters Favorite Disney Movie's project! '<br>
-        <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div> <br><br /><a href='/movies'>Movies</a><br><br /><a href='/users'>Users</a></div>`
+        `<div> 'Welcome to my daughters Favorite Disney Movie's project! '<br><br />
+
+        <a href='/princesses'>Princesses</a><br><br />
+
+        <a href='/princes'>Princes</a></div> <br><br />
+
+        <a href='/movies'>Movies</a><br>
+
+        <br /><a href='/users'>Users</a></div>`
         );
 });
 ////////==============Prince routes=========
