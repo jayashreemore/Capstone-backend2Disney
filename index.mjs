@@ -9,6 +9,7 @@ import db from './db/conn.mjs';
 // Import routes
 import princessRoutes from './controllers/princess.mjs';
 import princeRoutes from './controllers/prince.mjs';
+import movieRoutes from './controllers/movie.mjs';
 
 
 // Create express application
@@ -36,12 +37,12 @@ mongoose.connect(process.env.MONGO_URI, {
 // Routes
 app.use("/princesses", princessRoutes);
 app.use("/princes", princeRoutes);
-
+app.use("/movies", movieRoutes);
 // Root route
 app.get('/', (req, res) => {
     res.send(
         `<div> 'Welcome to my daughters Favorite Disney Movie's Characters -Princess and Prince project!'<br>
-        <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div>`
+        <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div> <br><br /><a href='/movies'>Movies</a></div>`
         );
 });
 
