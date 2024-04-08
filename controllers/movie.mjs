@@ -68,7 +68,7 @@ router.get('/', async (req, res) => {
     try {
         const foundMovies = await Movie.find({});
         res.status(200).render('movies/Index', { movies: foundMovies})
-        res.status(200).send(foundMovies);
+        //res.status(200).send(foundMovies);///////////check this line in all controllers b4 running
     } catch (err) {
         res.status(400).send(err);
     }
