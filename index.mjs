@@ -10,6 +10,7 @@ import db from './db/conn.mjs';
 import princessRoutes from './controllers/princess.mjs';
 import princeRoutes from './controllers/prince.mjs';
 import movieRoutes from './controllers/movie.mjs';
+import userRoutes from './controllers/user.mjs';
 
 
 // Create express application
@@ -34,42 +35,45 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 app.use("/movies", movieRoutes);
+app.use("/princesses", princessRoutes);
+app.use("/princes", princeRoutes);
+app.use("/users", userRoutes);
 
 // Root route
 app.get('/', (req, res) => {
     res.send(
         `<div> 'Welcome to my daughters Favorite Disney Movie's project! '<br>
-        <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div> <br><br /><a href='/movies'>Movies</a></div>`
+        <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div> <br><br /><a href='/movies'>Movies</a><br><br /><a href='/users'>Users</a></div>`
         );
 });
 ////////==============Prince routes=========
 
-app.use("/princes", princeRoutes);
+// app.use("/princes", princeRoutes);
 
-app.get('/', (req, res) => {
-    res.send(
-        `<div> this is my prince and princess root route <br/><a href='/princes'>princes</a></div>`
-    );
-});
+// app.get('/', (req, res) => {
+//     res.send(
+//         `<div> this is my prince and princess root route <br/><a href='/princes'>princes</a></div>`
+//     );
+// });
 
 //==============Princess routes=========
 
-app.use("/princesses", princessRoutes);
+// app.use("/princesses", princessRoutes);
 
-app.get('/', (req, res) => {
-    res.send(
-        `<div> this is my prince and princess root route <br/><a href='/princesses'>princesses</a></div>`
-    );
-}); 
+// app.get('/', (req, res) => {
+//     res.send(
+//         `<div> this is my prince and princess root route <br/><a href='/princesses'>princesses</a></div>`
+//     );
+// }); 
 
 ////////////////Movies routes==========
-app.use("/movies", movieRoutes);
+// app.use("/movies", movieRoutes);
 
-app.get('/', (req, res) => {
-    res.send(
-        `<div> this is my movie root route <br/><a href='/movies'>movies</a></div>`
-    );
-});
+// app.get('/', (req, res) => {
+//     res.send(
+//         `<div> this is my movie root route <br/><a href='/movies'>movies</a></div>`
+//     );
+// });
 
 
 app.listen(PORT, () => {
