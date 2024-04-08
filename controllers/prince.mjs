@@ -1,6 +1,5 @@
 import express from 'express';
 const router = express.Router();
-
 import Prince from '../models/prince.mjs';
 import db from '../db/conn.mjs';
 
@@ -9,7 +8,7 @@ import db from '../db/conn.mjs';
 
 router.get('/seed', async (req, res) => {
     console.log('in seed');
-    try{
+    try {
         await Prince.create([
             {
                 id: 1,
@@ -19,7 +18,7 @@ router.get('/seed', async (req, res) => {
                 outfitColor: 'White',
                 bestFriend: 'Mice and Birds'
             },
-        
+
             {
                 id: 2,
                 name: 'Prince Phillip',
@@ -28,7 +27,7 @@ router.get('/seed', async (req, res) => {
                 outfitColor: 'Blue',
                 bestFriend: 'Maleficent (in disguise)'
             },
-        
+
             {
                 id: 3,
                 name: 'Maui',
@@ -36,8 +35,8 @@ router.get('/seed', async (req, res) => {
                 age: '1000',
                 outfitColor: 'Brown',
                 bestFriend: 'Moana'
-            }, 
-        
+            },
+
             {
                 id: 4,
                 name: 'Kristoff',
@@ -46,7 +45,7 @@ router.get('/seed', async (req, res) => {
                 outfitColor: 'Brown',
                 bestFriend: 'Sven'
             },
-        
+
             {
                 id: 5,
                 name: 'Hans',
@@ -54,29 +53,26 @@ router.get('/seed', async (req, res) => {
                 age: 23,
                 outfitColor: 'Black',
                 bestFriend: 'None (deceptive)'
-            }
-// Add more prince data from down below as needed
-// Sample data for Disney Princes
-//const princes = [
-  /*  
-    {
-        id: 6,
-        name: 'James',
-        movie: 'Sofia the First',
-        age: 10,
-        outfitColor: 'Blue',
-        bestFriend: 'Sofia'
-    },
-    
-    {
-        id: 7,
-        name: 'Prince Hugo',
-        movie: 'Sofia the First',
-        age: 11,
-        outfitColor: 'Green',
-        bestFriend: 'Prince James'
-    },
-*/
+            },
+
+            {
+                id: 6,
+                name: 'James',
+                movie: 'Sofia the First',
+                age: 10,
+                outfitColor: 'Blue',
+                bestFriend: 'Sofia'
+            },
+
+            {
+                id: 7,
+                name: 'Prince Hugo',
+                movie: 'Sofia the First',
+                age: 11,
+                outfitColor: 'Green',
+                bestFriend: 'Prince James'
+            },
+
 
         ])
         res.status(200).redirect('/princes');
@@ -91,10 +87,12 @@ router.get('/seed', async (req, res) => {
 // Route to get all Disney Princes
 //I -Index-GET-READ-display a list of elements
 
-router.get('/', async (req, res) =>{
+router.get('/', async (req, res) => {
     console.log("prince");
-    try{
+    try {
         const foundPrinces = await Prince.find({});
+        res.status(200).render('prince/Index', { princes: foundPrinces})
+
         res.status(200).send(foundPrinces);
     } catch (err) {
         res.status(400).send(err);
@@ -109,12 +107,12 @@ router.get('/new', (req, res) => {
 
 // D- DELETE -it ll delete item permanantly
 
-router.delete('/:id', async(req, res) => {
-    try{
+router.delete('/:id', async (req, res) => {
+    try {
         const deletedPrince = await Prince.findByIdAndDelete(req.params.id);
         console.log(deletedPrince);
         res.status(200).redirect('/princes');
-    }  catch (err) {
+    } catch (err) {
         res.status(400).send(err);
     }
 })
@@ -124,26 +122,26 @@ router.delete('/:id', async(req, res) => {
 router.put('/:id', async (req, res) => {
     if (req.body.readyToWatch === 'on') {
         req.body.readyToWatch = true;
-    }   else {
+    } else {
         req.body.readyToWatch = false;
-    }  
-        try {
-            const updatedPrince = await Prince.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                {new: true},
-            );
-                console.log(updatedPrince);
-            res.redirect(`/princes/${req.params.id}`);
-        }   catch(err) {
-            res.status(400).send(err);
-        }
+    }
+    try {
+        const updatedPrince = await Prince.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true },
+        );
+        console.log(updatedPrince);
+        res.redirect(`/princes/${req.params.id}`);
+    } catch (err) {
+        res.status(400).send(err);
+    }
 })
 
 //////C - CREATE - to create new -POST
 //starting with post route to see things in database
 
-router.post('/', async(req, res) => {
+router.post('/', async (req, res) => {
     // useful for user input form 
     if (req.body.readyToWatch === 'on') {
         req.body.readyToWatch = true;
@@ -152,20 +150,21 @@ router.post('/', async(req, res) => {
     }
     console.log(req.body)
 
-    try{
+    try {
         const createdPrince = await Prince.create(req.body);
-        } catch (err) {
-            res.status(400).send(err);
-        }
+        res.status(200).redirect('/princes');
+    } catch (err) {
+        res.status(400).send(err);
+    }
 })
 
 ////E- EDIT -GET-update an existing entry in the database
 
 router.get("/:id/edit", async (req, res) => {
     try {
-        const foundPrince = await Prince.findById (req.params.id);
-        res.status(200).render('princes/Edit', {prince: foundPrince});
-    }  catch (err) {
+        const foundPrince = await Prince.findById(req.params.id);
+        res.status(200).render('princes/Edit', { prince: foundPrince });
+    } catch (err) {
         res.status(400).send(err);
     }
 })
@@ -176,11 +175,11 @@ router.get("/:id/edit", async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const foundPrince = await Prince.findById(req.params.id);
-        res.render('princes/Show', { prince: foundPrince});
+        res.render('princes/Show', { prince: foundPrince });
     } catch (err) {
         res.status(400).send(err);
     }
-    
+
 });
 
 export default router;

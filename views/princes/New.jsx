@@ -3,7 +3,7 @@
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
 
-class NewPrince extends React.Component {
+class New extends React.Component {
     render() {
         return (
             <DefaultLayout title="Add a New Prince">

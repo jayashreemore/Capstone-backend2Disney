@@ -4,6 +4,7 @@ const DefaultLayout = require('../layout/Default.jsx');
 class Index extends React.Component {
     render() {
         const { movies } = this.props;
+        //const movies = this.props.movies;
 
         return (
             <DefaultLayout title="Movies Index Page">
@@ -21,7 +22,7 @@ class Index extends React.Component {
                                 is {movie.prince} <br></br>
                                 {movie.readyToWatch
                                 ? `It is ready to watch`
-                                : `It is not ready to watch`}
+                                : `It is NOT ready to watch`}
                                 <br/>
                                 <a href={`/movies/${movie._id}/edit`}>Edit This Movie</a>
                                 <form action={`/movies/${movie._id}?_method=DELETE`} method="POST">
@@ -29,7 +30,9 @@ class Index extends React.Component {
                                 </form>   
                             </li>
                         )
-                    })}
+                    })
+                    
+                    }
                 </ul>
             </DefaultLayout>
         )

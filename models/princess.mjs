@@ -15,7 +15,7 @@ const princessSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  dressColor: {
+  outfitColor: {
     type: String,
     required: true,
   },

@@ -3,7 +3,7 @@
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
 
-class Editprinces extends React.Component {
+class Edit extends React.Component {
     render() {
         return (
             <DefaultLayout title="Edit Page">

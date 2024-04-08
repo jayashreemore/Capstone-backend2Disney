@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import Fruit from '../models/movie.mjs';
+import Movie from '../models/movie.mjs';
 import db from '../db/conn.mjs';
 
 
@@ -11,7 +11,7 @@ router.get("/seed", async (req, res) => {
         await Movie.create([
 
             {
-                
+                id:1,
                 name: 'Cindrella',
                 prince :'Prince Charming',
                 princess: 'Cindrella',
@@ -20,7 +20,7 @@ router.get("/seed", async (req, res) => {
             },
 
             {
-                
+                id:2,
                 name: 'Sleeping Beauty',
                 prince: 'Prince Phillip',
                 princess: 'Aurora',
@@ -68,7 +68,7 @@ router.get('/', async (req, res) => {
     try {
         const foundMovies = await Movie.find({});
         res.status(200).render('movies/Index', { movies: foundMovies})
-        res.status(200).send(foundmovies);
+        res.status(200).send(foundMovies);
     } catch (err) {
         res.status(400).send(err);
     }

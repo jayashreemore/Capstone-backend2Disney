@@ -1,6 +1,5 @@
 import express from 'express';
 const router = express.Router();
-
 import Princess from '../models/princess.mjs';
 import db from '../db/conn.mjs';
 
@@ -15,7 +14,7 @@ router.get('/seed', async (req, res) => {
         name: 'Cinderella',
         movie: 'Cinderella',
         age: 20,
-        dressColor: 'Blue',
+        outfitColor: 'Blue',
         bestFriend: 'Fairy Godmother'
     },
     {
@@ -23,7 +22,7 @@ router.get('/seed', async (req, res) => {
         name: 'Aurora',
         movie: 'Sleeping Beauty',
         age: 16,
-        dressColor: 'Pink',
+        outfitColor: 'Pink',
         bestFriend: 'Fairies'
     },
 
@@ -32,7 +31,7 @@ router.get('/seed', async (req, res) => {
         name: 'Anna',
         movie: 'Frozen',
         age: 18,
-        dressColor: 'Green',
+        outfitColor: 'Green',
         bestFriend: 'Elsa'
     }, 
 
@@ -41,7 +40,7 @@ router.get('/seed', async (req, res) => {
         name: 'Moana',
         movie: 'Moana',
         age: 16,
-        dressColor: 'Red',
+        outfitColor: 'Red',
         bestFriend: 'Maui'
     },
 
@@ -50,7 +49,7 @@ router.get('/seed', async (req, res) => {
         name: 'Elsa',
         movie: 'Frozen',
         age: 21,
-        dressColor: 'Blue',
+        outfitColor: 'Blue',
         bestFriend: 'Anna'
     },
 
@@ -59,7 +58,7 @@ router.get('/seed', async (req, res) => {
         name: 'Sofia',
         movie: 'Sofia the First',
         age: 8,
-        dressColor: 'Purple',
+        outfitColor: 'Purple',
         bestFriend: 'Clover'
     }, 
     
@@ -68,13 +67,13 @@ router.get('/seed', async (req, res) => {
         name: 'Amber',
         movie: 'Sofia the First',
         age: 10,
-        dressColor: 'Yellow',
+        outfitColor: 'Yellow',
         bestFriend: 'Princess Hildegard'
     },
-    // Add more princess data as needed
+
 ])
 
-res.status(200).redirect('/princess');
+res.status(200).redirect('/princesses');
 } catch (err) {
 res.status(400).send(err);
 }
@@ -90,7 +89,10 @@ router.get('/', async (req, res) =>{
     console.log("get")
 try{
 const foundPrincesses = await Princess.find({});
-res.status(200).send(foundPrincesses);
+res.status(200).render('princesses/Index', { princesses : foundPrincesses})
+///check this 2 b4 running 
+
+res.status(200).send(foundPrincesses)
 } catch (err) {
 res.status(400).send(err);
 }
@@ -106,7 +108,7 @@ res.sender('princesses/New');
 
 router.delete('/:id', async(req, res) => {
 try{
-const deletedPrincess = await Prince.findByIdAndDelete(req.params.id);
+const deletedPrincess = await Princess.findByIdAndDelete(req.params.id);
 console.log(deletedPrincess);
 res.status(200).redirect('/princesesses');
 }  catch (err) {
@@ -149,6 +151,7 @@ console.log(req.body)
 
 try{
 const createdPrincess = await Princess.create(req.body);
+res.status(200).redirect('/princesses');
 } catch (err) {
     res.status(400).send(err);
 }

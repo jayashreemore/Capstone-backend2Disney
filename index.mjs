@@ -25,8 +25,7 @@ app.engine('jsx', jsxViewEngine());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
-// Connect to MongoDB
-//mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -34,19 +33,45 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true
 });
 
-// Routes
-app.use("/princesses", princessRoutes);
-app.use("/princes", princeRoutes);
 app.use("/movies", movieRoutes);
+
 // Root route
 app.get('/', (req, res) => {
     res.send(
-        `<div> 'Welcome to my daughters Favorite Disney Movie's Characters -Princess and Prince project!'<br>
+        `<div> 'Welcome to my daughters Favorite Disney Movie's project! '<br>
         <br /><a href='/princesses'>Princesses</a><br><br /><a href='/princes'>Princes</a></div> <br><br /><a href='/movies'>Movies</a></div>`
         );
 });
+////////==============Prince routes=========
 
-// Start server
+app.use("/princes", princeRoutes);
+
+app.get('/', (req, res) => {
+    res.send(
+        `<div> this is my prince and princess root route <br/><a href='/princes'>princes</a></div>`
+    );
+});
+
+//==============Princess routes=========
+
+app.use("/princesses", princessRoutes);
+
+app.get('/', (req, res) => {
+    res.send(
+        `<div> this is my prince and princess root route <br/><a href='/princesses'>princesses</a></div>`
+    );
+}); 
+
+////////////////Movies routes==========
+app.use("/movies", movieRoutes);
+
+app.get('/', (req, res) => {
+    res.send(
+        `<div> this is my movie root route <br/><a href='/movies'>movies</a></div>`
+    );
+});
+
+
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`listening`);
 });

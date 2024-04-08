@@ -3,7 +3,7 @@
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
 
-class Indexprinces extends React.Component {
+class Index extends React.Component {
     render() {
         const { princes } = this.props;
         //const princes = this.props.princes;
@@ -15,28 +15,28 @@ class Indexprinces extends React.Component {
                 </nav>
                 <ul>
                     {princes.map((prince, i) => {
-                        return ( 
-                            <li> 
+                        return (
+                            <li>
                                 The {' '}
                                 <a href={`/princes/${prince._id}`}>
                                     {prince.name}
                                 </a> {' '}
                                 is {prince.movie} <br></br>
                                 {prince.readyToWatch
-                                ? `It is ready to watch`
-                            : `It is not ready to watch`}
-                            <br/>
-                            <a href={`/prince/${prince._id} /edit`}>Edit This Prince</a>
-                            <form action={`/princes/${prince._id}?_method=DELETE`} method="POST">
-                                <input type="submit"  value="DELETE"/>
-                                       </form>   
-                                 </li>
+                                    ? `It is ready to watch`
+                                    : `It is NOT ready to watch`}
+                                <br />
+                                <a href={`/princes/${prince._id} /edit`}>Edit This Prince</a>
+                                <form action={`/princes/${prince._id}?_method=DELETE`} method="POST">
+                                    <input type="submit" value="DELETE" />
+                                </form>
+                            </li>
                         )
                     })
 
-                }
+                    }
                 </ul>
-                </DefaultLayout>
+            </DefaultLayout>
         )
     }
 }

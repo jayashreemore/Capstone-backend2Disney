@@ -3,7 +3,7 @@
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
 
-class Showprinces extends React.Component {
+class Show extends React.Component {
     render() {
         const prince = this.props.prince;
 

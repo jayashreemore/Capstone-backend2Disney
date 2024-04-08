@@ -3,9 +3,10 @@
 const React = require('react');
 const DefaultLayout = require('../layout/Default.jsx');
 
-class IndexPrincess extends React.Component {
+class Index extends React.Component {
     render() {
         const { princesses } = this.props;
+        //const princesse = this.props.princesse;
 
         return (
             <DefaultLayout title="Princess Index Page">
@@ -24,11 +25,11 @@ class IndexPrincess extends React.Component {
                         ? `It is ready to watch`
                     : `It is not ready to watch`}
                     <br/>
-                    <a href={`/princess/${prince._id} /edit`}>Edit This Princess</a>
+                    <a href={`/princesses/${princess._id} /edit`}>Edit This Princess</a>
                     <form action={`/princesses/${prince._id}?_method=DELETE`} method="POST">
                         <input type="submit"  value="DELETE"/>
                     </form>   
-                         </li>
+                    </li>
                     ))}
                 </ul>
             </DefaultLayout>
