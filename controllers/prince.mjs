@@ -93,7 +93,7 @@ router.get('/', async (req, res) => {
         const foundPrinces = await Prince.find({});
         res.status(200).render('prince/Index', { princes: foundPrinces})
 
-        res.status(200).send(foundPrinces);
+        //res.status(200).send(foundPrinces);///////check this line in all controllers b4 running
     } catch (err) {
         res.status(400).send(err);
     }

@@ -90,7 +90,8 @@ router.get('/', async (req, res) =>{
 try{
 const foundPrincesses = await Princess.find({});
 res.status(200).render('princesses/Index', { princesses : foundPrincesses})
-///check this 2 b4 running 
+//res.status(200).send(foundPrincesses);///////check this line in all controllers b4 running
+///check this 2 b4 running Christina helped////
 
 res.status(200).send(foundPrincesses)
 } catch (err) {

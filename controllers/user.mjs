@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
     try {
         const foundUsers = await User.find({});
         res.status(200).render('users/Index', { users: foundUsers})
-        // res.status(200).send(foundVegetables);
+        // res.status(200).send(foundUsers);
     } catch (err) {
         res.status(400).send(err);
     }

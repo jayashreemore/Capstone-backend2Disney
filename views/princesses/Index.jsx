@@ -15,7 +15,7 @@ class Index extends React.Component {
                 </nav>
                 <ul>
                     {princesses.map((princess, i) => (
-                        <li> 
+                        <li key={i}> 
                         The {' '}
                         <a href={`/princesses/${princess._id}`}>
                             {princess.name}
