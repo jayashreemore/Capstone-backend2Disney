@@ -93,7 +93,7 @@ res.status(200).render('princesses/Index', { princesses : foundPrincesses})
 //res.status(200).send(foundPrincesses);///////check this line in all controllers b4 running
 ///check this 2 b4 running Christina helped////
 
-res.status(200).send(foundPrincesses)
+///res.status(200).send(foundPrincesses)
 } catch (err) {
     res.status(400).send(err);
 }
