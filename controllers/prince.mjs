@@ -84,14 +84,14 @@ router.get('/seed', async (req, res) => {
 
 
 
-// Route to get all Disney Princes
+// Route to get all Disney Princesses
 //I -Index-GET-READ-display a list of elements
 
 router.get('/', async (req, res) => {
     console.log("prince");
     try {
         const foundPrinces = await Prince.find({});
-        res.status(200).render('princes/Index', { princes: foundPrinces})
+        res.status(200).render('prince/Index', { princes: foundPrinces})
 
         //res.status(200).send(foundPrinces);///////check this line in all controllers b4 running
     } catch (err) {
@@ -102,7 +102,7 @@ router.get('/', async (req, res) => {
 //N - NEW -GET -allows user to input a new item in the list
 
 router.get('/new', (req, res) => {
-    res.render('princes/New');
+    res.sender('princes/New');
 })
 
 // D- DELETE -it ll delete item permanantly
