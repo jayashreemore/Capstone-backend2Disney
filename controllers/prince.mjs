@@ -84,7 +84,7 @@ router.get('/seed', async (req, res) => {
 
 
 
-// Route to get all Disney Princes
+// Route to get all Disney Princesses
 //I -Index-GET-READ-display a list of elements
 
 router.get('/', async (req, res) => {
@@ -102,7 +102,7 @@ router.get('/', async (req, res) => {
 //N - NEW -GET -allows user to input a new item in the list
 
 router.get('/new', (req, res) => {
-    res.sender('princes/New');
+    res.send('princes/New');
 })
 
 // D- DELETE -it ll delete item permanantly
