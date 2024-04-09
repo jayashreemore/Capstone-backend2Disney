@@ -86,14 +86,14 @@ res.status(400).send(err);
 //I -Index-GET-READ-display a list of elements
 
 router.get('/', async (req, res) =>{
-    console.log("get")
+    console.log("princess")
 try{
 const foundPrincesses = await Princess.find({});
 res.status(200).render('princesses/Index', { princesses : foundPrincesses})
 //res.status(200).send(foundPrincesses);///////check this line in all controllers b4 running
 ///check this 2 b4 running Christina helped////
 
-res.status(200).send(foundPrincesses)
+
 } catch (err) {
 res.status(400).send(err);
 }
@@ -102,7 +102,7 @@ res.status(400).send(err);
 //N - NEW -GET -allows user to input a new item in the list
 
 router.get('/new', (req, res) => {
-res.sender('princesses/New');
+res.render('princesses/New');
 })
 
 // D- DELETE -it ll delete item permanantly
@@ -111,7 +111,7 @@ router.delete('/:id', async(req, res) => {
 try{
 const deletedPrincess = await Princess.findByIdAndDelete(req.params.id);
 console.log(deletedPrincess);
-res.status(200).redirect('/princesesses');
+res.status(200).redirect('/princesses');
 }  catch (err) {
 res.status(400).send(err);
 }

@@ -91,7 +91,7 @@ router.get('/', async (req, res) => {
     console.log("prince");
     try {
         const foundPrinces = await Prince.find({});
-        res.status(200).render('prince/Index', { princes: foundPrinces})
+        res.status(200).render('princes/Index', { princes: foundPrinces})
 
         //res.status(200).send(foundPrinces);///////check this line in all controllers b4 running
     } catch (err) {
@@ -102,7 +102,7 @@ router.get('/', async (req, res) => {
 //N - NEW -GET -allows user to input a new item in the list
 
 router.get('/new', (req, res) => {
-    res.sender('princes/New');
+    res.render('princes/New');
 })
 
 // D- DELETE -it ll delete item permanantly
