@@ -44,6 +44,14 @@ The following routes are available in the Disney Movies Project:
   - `POST /movies`: Creates a new movie.
   - `PUT /movies/:id`: Updates an existing movie.
   - `DELETE /movies/:id`: Deletes a movie by ID.
+{
+                id:1,
+                name: 'Cindrella',
+                prince :'Prince Charming',
+                princess: 'Cindrella',
+                story: 'Cinderella is about a kind-hearted young woman who, with the help of her fairy godmother, attends a royal ball and captures the heart of Prince Charming. Despite facing hardships, she ultimately finds her happily ever after when the prince finds her using a glass slipper she leaves behind.',
+                readyToWatch: 'true',  
+            },
 
 - **Princesses Routes**:
   - `GET /princesses`: Retrieves all princesses.
@@ -52,12 +60,33 @@ The following routes are available in the Disney Movies Project:
   - `PUT /princesses/:id`: Updates an existing princess.
   - `DELETE /princesses/:id`: Deletes a princess by ID.
 
+  {
+        id: 1,
+        name: 'Cinderella',
+        movie: 'Cinderella',
+        age: 20,
+        outfitColor: 'Blue',
+        bestFriend: 'Fairy Godmother'
+    },
+
 - **Princes Routes**:
+
   - `GET /princes`: Retrieves all princes.
   - `GET /princes/:id`: Retrieves a specific prince by ID.
   - `POST /princes`: Creates a new prince.
   - `PUT /princes/:id`: Updates an existing prince.
   - `DELETE /princes/:id`: Deletes a prince by ID.
+
+  
+                { 
+                id: 1,
+                name: 'Prince Charming',
+                movie: 'Cinderella',
+                age: 22,
+                outfitColor: 'White',
+                bestFriend: 'Mice and Birds'
+                }
+          
 
 - **Users Routes**:
   - `GET /users`: Retrieves all users.
@@ -67,3 +96,8 @@ The following routes are available in the Disney Movies Project:
   - `DELETE /users/:id`: Deletes a user by ID.
 
 
+            {
+                name: "Pappu Matre",
+                email: "pappu.jaan@gmail.com",
+                Phone: 614829999
+            },
