@@ -172,7 +172,7 @@ res.status(400).send(err);
 
 //////S-SHOW - GET-show route displays details of an individual Prince
 
-// Route to get details of a specific Disney Prince by ID
+// Route to get details of a specific Disney Princess by ID
 router.get('/:id', async (req, res) => {
 try {
 const foundPrincess = await Princess.findById(req.params.id);

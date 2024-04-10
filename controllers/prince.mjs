@@ -120,6 +120,7 @@ router.delete('/:id', async (req, res) => {
 ///U-UPDATE -updates list-PUT
 
 router.put('/:id', async (req, res) => {
+    
     if (req.body.readyToWatch === 'on') {
         req.body.readyToWatch = true;
     } else {
@@ -152,7 +153,7 @@ router.post('/', async (req, res) => {
 
     try {
         const createdPrince = await Prince.create(req.body);
-        res.status(200).redirect('/princes');
+        res.status(200).redirect('/princes');////
     } catch (err) {
         res.status(400).send(err);
     }

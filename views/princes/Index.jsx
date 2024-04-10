@@ -26,7 +26,7 @@ class Index extends React.Component {
                                     ? `It is ready to watch`
                                     : `It is NOT ready to watch`}
                                 <br />
-                                <a href={`/princes/${prince._id} /edit`}>Edit This Prince</a>
+                                <a href={`/princes/${prince._id}/edit`}>Edit This Prince</a>
                                 <form action={`/princes/${prince._id}?_method=DELETE`} method="POST">
                                     <input type="submit" value="DELETE" />
                                 </form>
