@@ -105,8 +105,24 @@ router.post('/', async(req, res) => {
         res.status(400).send(err);
     }
 })
-
-
+/////////===========validation ==========
+// Create User Route
+router.post('/', async (req, res) => {
+    // Validate request body
+    const { name, email, phone } = req.body;
+    if (!name || !email || !phone) {
+        return res.status(400).json({ error: "Please provide name, email, and phone number" });
+    }
+    try {
+        // Create new user if validation passes
+        const createdUser = await User.create(req.body);
+        res.status(200).redirect('/users');
+    } catch (err) {
+        // Handle database errors or validation errors
+        res.status(400).send(err);
+    }
+});
+///////////validation ============
 // E - EDIT - update an existing entry in the database
 router.get("/:id/edit", async (req, res) => {
     try {
