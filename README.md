@@ -101,3 +101,10 @@ The following routes are available in the Disney Movies Project:
                 email: "pappu.jaan@gmail.com",
                 Phone: 614829999
             },
+
+            This project is deployed on Render.com as a part of Capstone backened . 
+            you can check this here
+
+            https://disneymoviecharacters-sba319.onrender.com/
+
+            after clicking on Princesses , Princes , Movies and users you ll see list of it and you can create , add , edit and delete it .
