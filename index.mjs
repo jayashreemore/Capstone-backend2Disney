@@ -5,6 +5,8 @@ dotenv.config();
 import jsxViewEngine from 'jsx-view-engine';
 import methodOverride from 'method-override';
 import db from './db/conn.mjs';
+import cors from 'cors';///imported cors for frontend to run 
+
 
 
 // Import routes
@@ -17,6 +19,11 @@ import userRoutes from './controllers/user.mjs';
 // Create express application
 const app = express();
 const PORT = process.env.PORT || 5050;
+
+
+// adding CORS 
+
+app.use(cors()); 
 
 // Set up view engine
 app.set('view engine', 'jsx');
