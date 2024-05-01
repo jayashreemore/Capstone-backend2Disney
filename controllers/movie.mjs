@@ -67,7 +67,8 @@ router.get("/seed", async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const foundMovies = await Movie.find({});
-        res.status(200).render('movies/Index', { movies: foundMovies})
+        res.status(200).json(foundMovies);///changed this as react was not working without json1st may and now frontend is giving list 
+        //res.status(200).render('movies/Index', { movies: foundMovies})
         //res.status(200).send(foundMovies);///////////check this line in all controllers b4 running
     } catch (err) {
         res.status(400).send(err);

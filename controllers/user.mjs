@@ -53,7 +53,8 @@ router.get("/seed", async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const foundUsers = await User.find({});
-        res.status(200).render('users/Index', { users: foundUsers})
+        res.status(200).json(foundUsers);///changed this as react was not working without json1st may and now frontend is giving list 
+        //res.status(200).render('users/Index', { users: foundUsers})
         // res.status(200).send(foundUsers);
     } catch (err) {
         res.status(400).send(err);

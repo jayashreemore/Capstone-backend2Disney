@@ -89,7 +89,8 @@ router.get('/', async (req, res) =>{
     console.log("princess")
 try{
 const foundPrincesses = await Princess.find({});
-res.status(200).render('princesses/Index', { princesses : foundPrincesses})
+res.status(200).json(foundPrincesses);///changed this as react was not working without json1st may and now frontend is giving list 
+//res.status(200).render('princesses/Index', { princesses : foundPrincesses})
 //res.status(200).send(foundPrincesses);///////check this line in all controllers b4 running
 ///check this 2 b4 running Christina helped////
 
