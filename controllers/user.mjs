@@ -3,18 +3,6 @@ const router = express.Router();
 import User from '../models/user.mjs';
 import db from '../db/conn.mjs';
 
-// These are my routes
-// We are going to create the 7 RESTful routes
-// There is an order for them to listed in the code
-// I - N - D - U - C - E - S
-//  Action      HTTP Verb   CRUD 
-// I - Index    GET         READ - display a list of elements
-// N - New      GET         CREATE * - but this allows user input
-// D - Delete   DELETE      DELETE
-// U - Update   PUT         UPDATE * - this updates our database
-// C - Create   POST        CREATE * - this adds to our database
-// E - Edit     GET         UPDATE * - but this allows user input
-// S - Show     GET         READ - display a specific element
 
 // seed route
 router.get("/seed", async (req, res) => {
@@ -40,8 +28,8 @@ router.get("/seed", async (req, res) => {
                 name: "steave brown",
                 email: "steavebrown123@gmail.com",
                 Phone: 6148221111
-            }, 
-            
+            },
+
         ])
         res.status(200).redirect('/users');
     } catch (err) {
@@ -67,7 +55,7 @@ router.get('/new', (req, res) => {
 })
 
 // D - DELETE - allows a user to permanently remove an item from the database
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const deletedUser = await User.findByIdAndDelete(req.params.id);
         console.log(deletedUser);
@@ -82,12 +70,12 @@ router.delete('/:id', async(req, res) => {
 router.put('/:id', async (req, res) => {
 
     try {
-        const updatedUser= await User.findByIdAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
             req.body,
             { new: true },
         );
-            console.log(updatedUser);
+        console.log(updatedUser);
         res.redirect(`/users/${req.params.id}`);
     } catch (err) {
         res.status(400).send(err);
@@ -96,7 +84,7 @@ router.put('/:id', async (req, res) => {
 
 // C - CREATE
 // I am starting with my post route so that I can see the things in my database
-router.post('/', async(req, res) => {
+router.post('/', async (req, res) => {
     // // this will be useful when have a user input form
     try {
         const createdUser = await User.create(req.body);
@@ -117,10 +105,13 @@ router.post('/', async (req, res) => {
     try {
         // Create new user if validation passes
         const createdUser = await User.create(req.body);
-        res.status(200).redirect('/users');
-    } catch (err) {
-        // Handle database errors or validation errors
-        res.status(400).send(err);
+        console.log(createdUser);
+        res.status(201).json({
+            success: true,
+            createdUser,
+        });
+    } catch (error) {
+        next(error);
     }
 });
 ///////////validation ============
@@ -128,7 +119,7 @@ router.post('/', async (req, res) => {
 router.get("/:id/edit", async (req, res) => {
     try {
         const foundUser = await User.findById(req.params.id);
-        res.status(200).render('users/Edit', {user: foundUser});
+        res.status(200).render('users/Edit', { user: foundUser });
         console.log("trying to edit")
     } catch (err) {
         res.status(400).send(err);
@@ -140,7 +131,7 @@ router.get("/:id/edit", async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const foundUser = await User.findById(req.params.id);
-        res.render('users/Show', {user: foundUser});
+        res.render('users/Show', { user: foundUser });
     } catch (err) {
         res.status(400).send(err);
     }
